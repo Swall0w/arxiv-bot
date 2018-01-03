@@ -18,8 +18,6 @@ def get_oauth(init):
 class AbstractedlyListener(StreamListener):
     """ Let's stare abstractedly at the User Streams ! """
     def on_status(self, status):
-        # Ubuntuの時は気づかなかったんだけど、Windowsで動作確認してたら
-        # created_atはUTC（世界標準時）で返ってくるので日本時間にするために9時間プラスする。
         status.created_at += timedelta(hours=9)
         print("{text}".format(text=status.text))
         print("{name}({screen}) {created} via {src}\n".format(
