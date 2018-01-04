@@ -2,6 +2,7 @@ from arxivbot.twitter import get_oauth
 from tweepy.streaming import StreamListener, Stream
 from datetime import timedelta
 import configparser
+from arxivbot.utils import find_pattern_url_on_text, usual_url_pattern
 
 
 class AbstractedlyListener(StreamListener):
@@ -12,8 +13,9 @@ class AbstractedlyListener(StreamListener):
         print("{name}({screen}) {created} via {src}\n".format(
             name=status.author.name, screen=status.author.screen_name,
             created=status.created_at, src=status.source))
-        if status.author.screen_name == 'Swall0wTech':
-            print('True: my tweet')
+        urls = find_pattern_url_on_text(status.text, usual_url_pattern())
+        if (status.author.screen_name == 'Swall0wTech') and urls:
+            print("THIS IS ", urls)
 
 
 def main():
