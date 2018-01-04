@@ -2,11 +2,17 @@ from arxivbot.twitter import get_oauth
 from tweepy.streaming import StreamListener, Stream
 from datetime import timedelta
 import configparser
-from arxivbot.utils import find_pattern_url_on_text, usual_url_pattern
+from arxivbot.utils import (find_pattern_url_on_text,
+                            usual_url_pattern,
+                            extract_arxiv_data)
+from arxivbot.github import create_github_issue
 
 
 class AbstractedlyListener(StreamListener):
-    """ Let's stare abstractedly at the User Streams ! """
+    def __init__(self, github_user):
+        super(AbstractedlyListener, self).__init__()
+        self.github_user = github_user
+
     def on_status(self, status):
         status.created_at += timedelta(hours=9)
         print("{text}".format(text=status.text))
@@ -15,7 +21,21 @@ class AbstractedlyListener(StreamListener):
             created=status.created_at, src=status.source))
         urls = find_pattern_url_on_text(status.text, usual_url_pattern())
         if (status.author.screen_name == 'Swall0wTech') and urls:
-            print("THIS IS ", urls)
+            issues = extract_arxiv_data(urls)
+            print(issues)
+            for issue in issues:
+                title = issue['title']
+                body = "{}\n\n{}\n\n{}".format(
+                    ', '.join(issue['authors']), issue['abstract'], issue['url'])
+                labels = []
+                is_created, content = create_github_issue(
+                    self.github_user, title, body, labels)
+                if is_created:
+                    print('OK')
+                    print(content)
+                else:
+                    print('Bad')
+                    print(content)
 
 
 def main():
@@ -34,14 +54,8 @@ def main():
                    }
 
     auth = get_oauth(init)
-    stream = Stream(auth, AbstractedlyListener(), secure=True)
+    stream = Stream(auth, AbstractedlyListener(github_user=github_user), secure=True)
     stream.userstream()
-
-
-    title = 'Spatial Transformer Networks'
-    body = 'https://arxiv.org/abs/1506.02025' + '\n' + 'Convolutional Neural Networks define an exceptionally powerful class of models, but are still limited by the lack of ability to be spatially invariant to the input data in a computationally and parameter efficient manner. In this work we introduce a new learnable module, the Spatial Transformer, which explicitly allows the spatial manipulation of data within the network. This differentiable module can be inserted into existing convolutional architectures, giving neural networks the ability to actively spatially transform feature maps, conditional on the feature map itself, without any extra training supervision or modification to the optimisation process. We show that the use of spatial transformers results in models which learn invariance to translation, scale, rotation and more generic warping, resulting in state-of-the-art performance on several benchmarks, and for a number of classes of transformations.'
-    labels = ['CNN']
-    make_github_issue(github_user, title, body, labels)
 
 
 if __name__ == '__main__':
