@@ -23,7 +23,7 @@ install:
   - conda update -q conda
   - conda info -a
   - conda env create -f environment.yml;
-  - source activate arxiv-bot;
+  - source activate arxivbot;
   - pip install -e .
 
 script:
@@ -35,7 +35,7 @@ script:
   - pip install pytest
   - pip install pytest-cov
   - make test
-  - py.test --cov=./arxiv-bot --cov-config .coveragerc
+  - py.test --cov=./arxivbot --cov-config .coveragerc
 
 after_success:
   - codecov -t d03d5756-3cfe-4cfb-b54c-87449deb733c

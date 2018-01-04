@@ -29,9 +29,9 @@ test: clean-pyc
 	py.test --verbose --color=yes $(TEST_PATH)
 
 cov: clean-pyc
-	py.test --verbose --color=yes --cov=arxiv-bot --cov-config .coveragerc
+	py.test --verbose --color=yes --cov=arxivbot --cov-config .coveragerc
 
 reset: clean
-	pip uninstall arxiv-bot -y
+	pip uninstall arxivbot -y
 	python3 setup.py build
 	python3 setup.py install
