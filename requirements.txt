@@ -1,1 +1,3 @@
 tweepy
+urllib
+beautifulsoup4
