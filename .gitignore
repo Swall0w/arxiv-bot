@@ -1,3 +1,6 @@
 *.conf
 __pycache__
 *.swp
+*.egg-info/
+build/
+dist/
