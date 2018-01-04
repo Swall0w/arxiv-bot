@@ -24,6 +24,9 @@ install:
   - conda info -a
   - conda env create -f environment.yml;
   - source activate arxivbot;
+  - pip install tweepy
+  - pip install beautifulsoup4
+  - pip install lxml
   - pip install -e .
 
 script:
