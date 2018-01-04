@@ -1,3 +1,2 @@
 tweepy
-urllib
 beautifulsoup4

@@ -7,7 +7,7 @@ setup(
     version="0.1.0",
     description="Create Issues about arxiv papers",
     url="https://github.com/Swall0w/arxiv-bot",
-    install_requires=['tweepy','urllib', 'beautifulsoup4'],
+    install_requires=['tweepy', 'beautifulsoup4'],
     license=license,
     packages=find_packages(exclude=('tests')),
     test_suite='tests',
