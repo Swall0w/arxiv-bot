@@ -45,4 +45,4 @@ script:
   - pip install pytest-cov
   - make test
   - py.test --cov=arxivbot tests
-  - CODECLIMATE_REPO_TOKEN=16b4570c7de65c9bb03e003848e6e456e62933dff79b7f7a37cbb0382b63b5d3 codeclimate-test-reporter]
+  - CODECLIMATE_REPO_TOKEN=16b4570c7de65c9bb03e003848e6e456e62933dff79b7f7a37cbb0382b63b5d3 codeclimate-test-reporter
