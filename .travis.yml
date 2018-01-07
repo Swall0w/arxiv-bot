@@ -10,6 +10,10 @@ notifications:
     on_success: always
     on_failure: always
 
+addons:
+    code_climate:
+        repo_token: 16b4570c7de65c9bb03e003848e6e456e62933dff79b7f7a37cbb0382b63b5d3
+
 install:
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
@@ -24,9 +28,11 @@ install:
   - conda info -a
   - conda env create -f environment.yml;
   - source activate arxivbot;
-  - pip install tweepy
-  - pip install beautifulsoup4
-  - pip install lxml
+#  - pip install tweepy
+#  - pip install beautifulsoup4
+#  - pip install lxml
+  - pip install -r requirements.txt
+  - pip install codeclimate-test-reporter
   - pip install -e .
 
 script:
@@ -38,3 +44,5 @@ script:
   - pip install pytest
   - pip install pytest-cov
   - make test
+  - py.test --cov=arxivbot tests
+  - CODECLIMATE_REPO_TOKEN=16b4570c7de65c9bb03e003848e6e456e62933dff79b7f7a37cbb0382b63b5d3 codeclimate-test-reporter]
