@@ -28,9 +28,6 @@ install:
   - conda info -a
   - conda env create -f environment.yml;
   - source activate arxivbot;
-#  - pip install tweepy
-#  - pip install beautifulsoup4
-#  - pip install lxml
   - pip install -r requirements.txt
   - pip install coverage==4.3.0
   - pip install codeclimate-test-reporter
@@ -44,6 +41,11 @@ script:
   - pip install mock
   - pip install pytest
   - pip install pytest-cov
+  - pip install codacy-coverage
   - make test
   - py.test --cov=arxivbot tests
+  - CODECLIMATE_REPO_TOKEN=16b4570c7de65c9bb03e003848e6e456e62933dff79b7f7a37cbb0382b63b5d3 codeclimate-test-reporter
+  - coverage xml
+  - export CODACY_PROJECT_TOKEN=050fc74311d04d03a72dca2b1cbafc2e
+  - python-codacy-coverage -r coverage.xml
   - CODECLIMATE_REPO_TOKEN=16b4570c7de65c9bb03e003848e6e456e62933dff79b7f7a37cbb0382b63b5d3 codeclimate-test-reporter
