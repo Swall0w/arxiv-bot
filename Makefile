@@ -32,6 +32,5 @@ cov: clean-pyc
 	py.test --verbose --color=yes --cov=arxivbot --cov-config .coveragerc
 
 reset: clean
-	pip uninstall arxivbot -y
 	python3 setup.py build
 	python3 setup.py install

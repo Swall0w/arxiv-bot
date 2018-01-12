@@ -6,6 +6,7 @@ from arxivbot.utils import (find_pattern_url_on_text,
                             usual_url_pattern,
                             extract_arxiv_data)
 from arxivbot.github import create_github_issue
+import traceback
 
 
 class AbstractedlyListener(StreamListener):
@@ -21,21 +22,25 @@ class AbstractedlyListener(StreamListener):
             created=status.created_at, src=status.source))
         urls = find_pattern_url_on_text(status.text, usual_url_pattern())
         if (status.author.screen_name == 'Swall0wTech') and urls:
-            issues = extract_arxiv_data(urls)
-            print(issues)
-            for issue in issues:
-                title = issue['title']
-                body = "{}\n\n{}\n\n{}".format(
-                    ', '.join(issue['authors']), issue['abstract'], issue['url'])
-                labels = []
-                is_created, content = create_github_issue(
-                    self.github_user, title, body, labels)
-                if is_created:
-                    print('OK')
-                    print(content)
-                else:
-                    print('Bad')
-                    print(content)
+            try:
+                issues = extract_arxiv_data(urls)
+                print(issues)
+                for issue in issues:
+                    title = issue['title']
+                    body = "{}\n\n{}\n\n{}".format(
+                        ', '.join(issue['authors']), issue['abstract'], issue['url'])
+                    labels = []
+                    is_created, content = create_github_issue(
+                        self.github_user, title, body, labels)
+                    if is_created:
+                        print('OK')
+                        print(content)
+                    else:
+                        print('Bad')
+                        print(content)
+            except:
+                error = traceback.format_exc()
+                print(error)
 
 
 def main():
