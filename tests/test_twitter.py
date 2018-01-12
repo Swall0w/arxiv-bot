@@ -1,5 +1,4 @@
 import unittest
-import mock
 from arxivbot.twitter import get_oauth
 import tweepy
 
