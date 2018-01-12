@@ -1,0 +1,11 @@
+[twitter]
+consumer_key = hoge
+consumer_secret = fuga
+access_key = bar
+access_secret = foo
+
+[github]
+repo_owner = repository_owner_name
+repo_name = repository_name
+username = your_github_name
+password = your_github_password
