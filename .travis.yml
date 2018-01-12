@@ -31,6 +31,7 @@ install:
   - pip install -r requirements.txt
   - pip install coverage==4.3.0
   - pip install codeclimate-test-reporter
+  - pip install codecov
   - pip install -e .
 
 script:
@@ -49,3 +50,4 @@ script:
   - export CODACY_PROJECT_TOKEN=050fc74311d04d03a72dca2b1cbafc2e
   - python-codacy-coverage -r coverage.xml
   - CODECLIMATE_REPO_TOKEN=16b4570c7de65c9bb03e003848e6e456e62933dff79b7f7a37cbb0382b63b5d3 codeclimate-test-reporter
+  - codecov --token=004c5900-6edd-4b0d-9683-b91f99c4ef38

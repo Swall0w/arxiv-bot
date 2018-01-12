@@ -2,6 +2,7 @@
 This is a app creating a paper issue that we should read through my tweet.
 
 [![Build Status](https://travis-ci.org/Swall0w/arxiv-bot.svg?branch=master)](https://travis-ci.org/Swall0w/arxiv-bot)
+[![codecov](https://codecov.io/gh/Swall0w/arxiv-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/Swall0w/arxiv-bot)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e0c7cedc44f1053568b2/maintainability)](https://codeclimate.com/github/Swall0w/arxiv-bot/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e0c7cedc44f1053568b2/test_coverage)](https://codeclimate.com/github/Swall0w/arxiv-bot/test_coverage)
 [![codebeat badge](https://codebeat.co/badges/94385701-f326-4a65-9a50-c93233d2a5e2)](https://codebeat.co/projects/github-com-swall0w-arxiv-bot-master)
