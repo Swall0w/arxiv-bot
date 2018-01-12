@@ -13,7 +13,7 @@ This is a app creating a paper issue that we should read through my tweet.
 * Tweet or Retweet a message that contains URL of arxiv.
 * This app creates an issue which includes the title, authors, abstract, URL to [this repository](https://github.com/Swall0w/papers) instead of you.
 
-# Geting Started
+# Getting Started
 These instuctions will get you how I deploy thie app for my repository.
 If you want to deploy this for your repository and for your twitter account,
 you need to set the configration file for them.
