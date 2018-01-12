@@ -26,7 +26,7 @@ install:
 	python3 setup.py install
 
 test: clean-pyc
-	py.test --verbose --color=yes $(TEST_PATH)
+	py.test -s --verbose --color=yes $(TEST_PATH)
 
 cov: clean-pyc
 	py.test --verbose --color=yes --cov=arxivbot --cov-config .coveragerc
