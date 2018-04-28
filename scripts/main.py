@@ -16,15 +16,10 @@ class AbstractedlyListener(StreamListener):
 
     def on_status(self, status):
         status.created_at += timedelta(hours=9)
-        print("{text}".format(text=status.text))
-        print("{name}({screen}) {created} via {src}\n".format(
-            name=status.author.name, screen=status.author.screen_name,
-            created=status.created_at, src=status.source))
         urls = find_pattern_url_on_text(status.text, usual_url_pattern())
         if (status.author.screen_name == 'Swall0wTech') and urls:
             try:
                 issues = extract_arxiv_data(urls)
-                print(issues)
                 for issue in issues:
                     title = issue['title']
                     body = "{}\n\n{}\n\n{}".format(
@@ -131,7 +126,14 @@ def main():
 
     auth = get_oauth(init)
     stream = Stream(auth, AbstractedlyListener(github_user=github_user), secure=True)
-    stream.userstream()
+    error = 0
+    while True:
+        try:
+            stream.userstream()
+        except:
+            import traceback
+            error += 1
+            print(error, traceback.format_exc())
 
 
 if __name__ == '__main__':
