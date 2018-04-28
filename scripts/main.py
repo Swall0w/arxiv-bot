@@ -131,7 +131,6 @@ def main():
         try:
             stream.userstream()
         except:
-            import traceback
             error += 1
             print(error, traceback.format_exc())
 
