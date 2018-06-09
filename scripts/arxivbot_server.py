@@ -126,13 +126,7 @@ def main():
 
     auth = get_oauth(init)
     stream = Stream(auth, AbstractedlyListener(github_user=github_user), secure=True)
-    error = 0
-    while True:
-        try:
-            stream.userstream()
-        except:
-            error += 1
-            print(error, traceback.format_exc())
+    stream.userstream()
 
 
 if __name__ == '__main__':
